@@ -4,9 +4,8 @@ Module Program
     Dim num As Integer
     Dim line As String = "*"
     Dim stripe As String = "_"
+    
     Sub Main(args As String())
-
-
         Display()
 
     End Sub
