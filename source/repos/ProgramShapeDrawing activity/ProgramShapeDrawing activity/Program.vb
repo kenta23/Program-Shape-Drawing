@@ -4,14 +4,14 @@ Module Program
     Dim num As Integer
     Dim line As String = "*"
     Dim stripe As String = "_"
-    
     Sub Main(args As String())
+
         Display()
 
     End Sub
 
     Sub Display()
-
+        Console.WriteLine()
         Console.WriteLine("SHAPE DRAWING")
 
         Console.WriteLine("[1] Draw Line")
@@ -25,17 +25,22 @@ Module Program
         Console.Write("Enter your Choice to Draw: ")
         num = Convert.ToInt32(Console.ReadLine())
 
-        If (num = 1) Then
-            DrawLine()
-        ElseIf (num = 2) Then
-            DrawStripeLine()
-        ElseIf (num = 3) Then
-            DrawSquare()
-        ElseIf (num = 4) Then
-            DrawParallelogram()
-        ElseIf (num = 5) Then
-            DrawTriangle()
-        End If
+        Select Case num
+            Case 1
+                DrawLine()
+            Case 2
+                DrawStripeLine()
+            Case 3
+                DrawSquare()
+            Case 4
+                DrawParallelogram()
+            Case 5
+                DrawTriangle()
+            Case 6
+                DrawReverse()
+            Case 0
+                End
+        End Select
 
     End Sub
 
@@ -48,15 +53,13 @@ Module Program
 
         End While
 
-        If (num Mod 2 <> 0 And num > 3) Then
-            For i = 1 To num
-                Console.Write(line)
-            Next
+        For i = 1 To num
+            Console.Write(line)
+        Next
 
-            Console.WriteLine()
-            Display()
+        Console.WriteLine()
+        Display()
 
-        End If
 
     End Sub
 
@@ -68,19 +71,18 @@ Module Program
 
         End While
 
-        If (num Mod 2 <> 0 And num > 3) Then
-            For i = 1 To num
-                If (i Mod 2 = 0) Then
-                    Console.Write(line)
-                Else
-                    Console.Write(stripe)
-                End If
-            Next
 
-            Console.WriteLine()
-            Display()
+        For i = 1 To num
+            If (i Mod 2 = 0) Then
+                Console.Write(line)
+            Else
+                Console.Write(stripe)
+            End If
+        Next
 
-        End If
+        Console.WriteLine()
+        Display()
+
     End Sub
 
     Sub DrawSquare()
@@ -91,22 +93,42 @@ Module Program
 
         End While
 
-        If (num Mod 2 <> 0 And num > 3) Then
-            For i = 1 To num
-                For j = 1 To num
-                    Console.Write(line)
-                Next
-                Console.WriteLine("")
+
+        For i = 1 To num
+            For j = 1 To num
+                Console.Write(line)
             Next
+            Console.WriteLine("")
+        Next
 
-            Console.WriteLine()
-            Display()
+        Console.WriteLine()
+        Display()
 
-        End If
     End Sub
 
     Sub DrawParallelogram()
+        While (num <= 3 Or num Mod 2 = 0)
+            Console.Write("Enter the size of the shape. [Odd numbers only and above 3]: ")
+            num = Convert.ToInt32(Console.ReadLine())
+            Console.WriteLine()
 
+        End While
+
+        For i = num To 1 Step -1
+            For j = i To 1 Step -1
+                Console.Write(stripe)
+            Next
+            For k = 1 To num
+                Console.Write(line)
+            Next
+            For l = i To num Step +1
+                Console.Write(stripe)
+            Next
+            Console.WriteLine("")
+        Next
+
+        Console.WriteLine(" ")
+        Display()
     End Sub
 
     Sub DrawTriangle()
@@ -117,20 +139,41 @@ Module Program
 
         End While
 
-        If (num Mod 2 <> 0 And num > 3) Then
 
-            For i = num To 1
-                i -= 1
-                For j = 1 To num
-                    Console.Write(line)
-                Next
-                Console.WriteLine("")
-
+        For i = num To 1 Step -1
+            For j = i To num - 1 Step +1
+                Console.Write(stripe)
             Next
+            For k = i To 1 Step -1
+                Console.Write(line)
+            Next
+            Console.WriteLine("")
+        Next
 
-            Console.WriteLine()
-            Display()
-       
-        End If
+        Console.WriteLine(" ")
+        Display()
     End Sub
+
+    Sub DrawReverse()
+        While (num <= 3 Or num Mod 2 = 0)
+            Console.Write("Enter the size of the shape. [Odd numbers only and above 3]: ")
+            num = Convert.ToInt32(Console.ReadLine())
+            Console.WriteLine()
+
+        End While
+
+        For i = num To 1 Step -1
+            For j = i To num - 1 Step +1
+                Console.Write(line)
+            Next
+            For k = i To 1 Step -1
+                Console.Write(stripe)
+            Next
+            Console.WriteLine("")
+        Next
+
+        Console.WriteLine(" ")
+        Display()
+    End Sub
+
 End Module
