@@ -6,7 +6,6 @@ Module Program
     Dim stripe As String = "_"
     Sub Main(args As String())
 
-        Console.WriteLine("Hello World!" + "goodbye")
 
         Display()
 
